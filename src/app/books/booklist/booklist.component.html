@@ -1,0 +1,13 @@
+<div *ngIf="bookShelf.length > 0">
+  <div *ngFor="let book of bookShelf">
+    <mat-card>
+      <mat-card-title>{{book.title}}</mat-card-title>
+      <mat-card-subtitle>Autor: {{book.author}}</mat-card-subtitle>
+      <mat-card-subtitle>Número de páginas: {{book.pages}}</mat-card-subtitle>
+    </mat-card>
+  </div>
+</div>
+<p *ngIf="bookShelf.length <= 0">
+  Não há Livros cadastrados
+</p>
+

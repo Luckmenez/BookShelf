@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Book } from './books/book.model';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'bookshelf';
+  @Input() bookShelf: Book [] = [];
+
+  onBookAdded(book){
+    this.bookShelf = [book, ...this.bookShelf];
+  }
 }

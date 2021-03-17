@@ -1,0 +1,21 @@
+mat-card {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  background-color: #921add;
+  color: aliceblue;
+}
+
+mat-card-title{
+  margin-bottom: 0.5rem;
+}
+
+mat-card, mat-card-subtitle {
+  color: rgb(217, 226, 235);
+}
+
+p{
+ text-align: center;
+ margin-top: 1rem;
+}
