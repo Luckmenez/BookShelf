@@ -1,5 +1,6 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Book } from '../book.model';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { BookService } from '../book.service';
 
 @Component({
   selector: 'app-book-form',
@@ -7,23 +8,23 @@ import { Book } from '../book.model';
   styleUrls: ['./book-form.component.css']
 })
 export class BookFormComponent implements OnInit {
-  @Output() bookAdded = new EventEmitter();
-  id: String;
-  author: String;
-  title: String;
-  pages: String;
 
-  createBook(){
-    const book: Book = {
-      id:this.id,
-      author: this.author,
-      title: this.title,
-      pages: this.pages,
-    }
-    this.bookAdded.emit(book);
+  constructor(private BookService: BookService) {
+
   }
 
-  constructor() { }
+  createBook(form: NgForm){
+    console.log(form)
+    if(form.invalid) return;
+    this.BookService.createBook(
+      form.value.id,
+      form.value.title,
+      form.value.author,
+      form.value.pages
+    )
+    form.resetForm();
+  }
+
 
   ngOnInit(): void {
   }

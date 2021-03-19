@@ -15,6 +15,21 @@ mat-card, mat-card-subtitle {
   color: rgb(217, 226, 235);
 }
 
+.buttonsCard {
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+button {
+  width: 10%;
+  color: #fff;
+  background-color: #fff;
+  color: #921add;
+  margin-top: 1rem;
+  margin: 1%;
+}
+
 p{
  text-align: center;
  margin-top: 1rem;
