@@ -7,13 +7,14 @@ import { BookService } from '../book.service';
   templateUrl: './book-form.component.html',
   styleUrls: ['./book-form.component.css']
 })
+
 export class BookFormComponent implements OnInit {
 
   constructor(private BookService: BookService) {
 
   }
 
-  createBook(form: NgForm){
+  onCreateBook(form: NgForm){
     console.log(form)
     if(form.invalid) return;
     this.BookService.createBook(

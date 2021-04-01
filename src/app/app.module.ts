@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { BookFormComponent } from './books/book-form/book-form.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     FormsModule,
     MatButtonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

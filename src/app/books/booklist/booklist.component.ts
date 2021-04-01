@@ -13,10 +13,12 @@ export class BooklistComponent implements OnInit, OnDestroy {
   bookShelf: Book [] = [];
   private BookSubscription: Subscription;
 
-  constructor(private BookService: BookService) { }
+  constructor(private BookService: BookService) {
+
+  }
 
   ngOnInit(): void {
-    this.bookShelf = this.BookService.getBooks();
+    this.BookService.getBooks();
     this.BookSubscription = this.BookService.getBookshelfAtualizedObservable().subscribe(
       (books: Book[]) =>{
         this.bookShelf = books;
@@ -25,6 +27,6 @@ export class BooklistComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-
+    this.BookSubscription.unsubscribe();
   }
 }

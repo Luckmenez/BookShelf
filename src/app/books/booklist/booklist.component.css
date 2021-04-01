@@ -5,8 +5,7 @@ mat-card {
   margin-top: 1rem;
   background-color: #921add;
   color: aliceblue;
-}
-
+};
 mat-card-title{
   margin-bottom: 0.5rem;
 }
