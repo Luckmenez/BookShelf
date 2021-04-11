@@ -1,36 +1,46 @@
-const express = require('express');
-const cors    = require('cors');
-const app     = express();
+const express  = require('express');
+const cors     = require('cors');
+const Books    = require('./models/book');
+const env      = require('./env');
+const mongoose = require('mongoose')
 
-app.use(express.json);
+mongoose.connect(`mongodb+srv://Fatec_ipi_20211_paoo:${env.mongoPassword}@cluster0.uzfsq.mongodb.net/${env.dbName}?retryWrites=true&w=majority`,
+  { useNewUrlParser: true, useUnifiedTopology:true }
+)
+.then(() => console.log('Conexão MongoDB: ok'))
+.catch(error => console.log(error));
+
+const app = express();
+
+app.use(express.json());
 app.use(cors());
 
-const clientes = [
-  {
-    id:'1',
-    title:'Tres mosqueteiros',
-    author:'Lucas',
-    pages:'3'
-  },
-  {
-    id:'2',
-    title:'Dois mosqueteiros',
-    author:'Lucas',
-    pages:'2'
-  },
-];
 
 app.post('/api/books', (req, res, next) => {
-  const books = req.body;
-  console.log(books);
+  const book = new Books({
+    id: req.body.id,
+    title:req.body.title,
+    author:req.body.author,
+    pages:req.body.pages,
+  });
+  book.save();
   res.status(201).json({message: 'Book Inserted'});
 });
 
-app.use("/api/books", (req, res, next) => {
-  res.status(200).json({
-    message:"Tudo ok",
-    books:books
-  });
+app.get("/api/books", (req, res, next) => {
+  Books.find().then( booksData => {
+    res.status(200).json({
+      message:"Ok",
+      books: booksData
+    })
+  })
 });
+
+// app.use("/api/books", (req, res, next) => {
+//   res.json({
+//     message:"Tudo ok",
+//     books:books
+//   });
+// });
 
 module.exports = app;

@@ -1,5 +1,5 @@
 <mat-card>
-  <form (submit)="onCreateBook(bookForm)" #bookForm="ngForm">
+  <form (ngSubmit)="onCreateBook(bookForm)" #bookForm="ngForm">
     <mat-card-title>Adicionar Livro:</mat-card-title>
     <mat-form-field>
       <input
@@ -41,6 +41,6 @@
         required>
         <mat-error>Digite o número de páginas</mat-error>
     </mat-form-field>
-    <button mat-raised-button>Adicionar Livro</button>
+    <button mat-raised-button type="submit">Adicionar Livro</button>
   </form>
 </mat-card>
