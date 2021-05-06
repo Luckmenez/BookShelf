@@ -4,7 +4,12 @@ const Books    = require('./models/book');
 const env      = require('./env');
 const mongoose = require('mongoose')
 
-mongoose.connect(`mongodb+srv://Fatec_ipi_20211_paoo:${env.mongoPassword}@cluster0.uzfsq.mongodb.net/${env.dbName}?retryWrites=true&w=majority`,
+const userDB    = process.env.MONGODB_USER;
+const passDB    = process.env.MONGODB_PASSWORD;
+const clusterDB = process.env.MONGODB_CLUSTER;
+const nameDB    = process.env.MONGODB_DATABASE;
+
+mongoose.connect(`mongodb+srv://${userDB}:${passDB}@${clusterDB}.mongodb.net/${nameDB}?retryWrites=true&w=majority`,
   { useNewUrlParser: true, useUnifiedTopology:true }
 )
 .then(() => console.log('Conexão MongoDB: ok'))
@@ -36,11 +41,8 @@ app.get("/api/books", (req, res, next) => {
   })
 });
 
-// app.use("/api/books", (req, res, next) => {
-//   res.json({
-//     message:"Tudo ok",
-//     books:books
-//   });
-// });
+app.delete('/api/books/:id', (req, res) => {
+
+});
 
 module.exports = app;

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Book } from './book.model';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({providedIn:'root'})
 export class BookService {
@@ -13,7 +14,18 @@ export class BookService {
   }
 
   getBooks(){
-    this.httpClient.get<{message: string, books: Book[]}>('http://localhost:3000/api/books').subscribe(
+    this.httpClient.get<{message: string, books: any}>('http://localhost:3000/api/books')
+    .pipe(map(bookData => {
+      return bookData.books.map( book => {
+        return{
+          id: book._id,
+          title: book.title,
+          author: book.author,
+          pages: book.pages,
+        }
+      })
+    }))
+    .subscribe(
       (bookList) =>{
         this.books = bookList.books;
         this.bookShelfAtualized.next([...this.books]);
