@@ -6,7 +6,7 @@
       <mat-card-subtitle>Número de páginas: {{book.pages}}</mat-card-subtitle>
       <div class="buttonsCard">
         <button  mat-raised-button >EDITAR</button>
-        <button  mat-raised-button >REMOVER</button>
+        <button  mat-raised-button (click)="onDeleteBook(book.id)">REMOVER</button>
       </div>
     </mat-card>
   </div>

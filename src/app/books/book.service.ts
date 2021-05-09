@@ -27,7 +27,7 @@ export class BookService {
     }))
     .subscribe(
       (bookList) =>{
-        this.books = bookList.books;
+        this.books = bookList;
         this.bookShelfAtualized.next([...this.books]);
       }
     )
@@ -47,6 +47,16 @@ export class BookService {
         this.bookShelfAtualized.next([...this.books]);
       }
     );
+  }
+
+  removeBook (id: string) :void {
+    console.log(id);
+    this.httpClient.delete(`http://localhost:3000/api/books/${id}`).subscribe(() => {
+      this.books = this.books.filter( book => {
+        return book.id !== id
+      })
+      this.bookShelfAtualized.next([...this.books]);
+    })
   }
 
   getBookshelfAtualizedObservable(){
